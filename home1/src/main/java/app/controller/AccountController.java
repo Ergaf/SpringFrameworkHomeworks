@@ -18,4 +18,19 @@ public class AccountController {
     List<Account> getAllAccounts(){
         return accountService.getAllAccounts();
     }
+
+    @PostMapping("/accountReplenish")
+    boolean replenishAccountBalance(Long id, Double sum){
+        return accountService.replenishAccountBalance(id, sum);
+    }
+
+    @PostMapping("/accountTakeOff")
+    boolean takeOffFromAccountBalance(Long id, Double sum){
+        return accountService.takeOffFromAccountBalance(id, sum);
+    }
+
+    @PostMapping("/accountTakeOff")
+    boolean transferMoneyFromAccountToAccount(Long id1, Long id2, Double sum){
+        return accountService.transferMoneyFromAccountToAccount(id1, id2, sum);
+    }
 }

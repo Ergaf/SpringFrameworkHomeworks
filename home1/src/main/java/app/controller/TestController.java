@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 public class TestController {
 
-    @GetMapping("/")
+    @GetMapping("/111")
 //    @ResponseBody
     public String getTest() {
 //        Path path = Paths.get(getClass().getResource("/templates/upload.html").toURI());
@@ -31,7 +31,7 @@ public class TestController {
         return "upload";
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/upload111")
 //    @ResponseBody
     public String upload(HttpServletRequest request) throws IOException, ServletException {
         System.out.println("upload");
@@ -44,10 +44,10 @@ public class TestController {
             String name = save(partThis);
             filesName.add(name);
         }
-        return "redirect:/uploadS";
+        return "redirect:/uploadS111";
     }
 
-    @GetMapping("/uploadS")
+    @GetMapping("/uploadS111")
     public String uploadS(){
         return "uploadS";
     }
