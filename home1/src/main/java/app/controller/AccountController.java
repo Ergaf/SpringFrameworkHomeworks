@@ -29,7 +29,7 @@ public class AccountController {
         return accountService.takeOffFromAccountBalance(id, sum);
     }
 
-    @PostMapping("/accountTakeOff")
+    @PostMapping("/accountTransfer")
     boolean transferMoneyFromAccountToAccount(Long id1, Long id2, Double sum){
         return accountService.transferMoneyFromAccountToAccount(id1, id2, sum);
     }

@@ -1,0 +1,135 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+/*стили Header*/
+.header-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    color: aliceblue;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.header-button{
+    -webkit-flex: auto;
+    flex: auto;
+    width: 5vw;
+    height: 7vh;
+    color: aliceblue;
+    background: dimgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-button:hover{
+    background: rgb(88, 88, 88);
+    cursor: pointer;
+}
+.nodisplay{
+    display: none;
+}
+.choice{
+    color: aliceblue;
+    background: dimgray;
+    margin: 10px;
+}
+
+/*стили модалок*/
+.modal-fon{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    background: black;
+    opacity: 50%;
+}
+/*стили модалки addnew*/
+.modal-add-new{
+    position: fixed;
+    width: 50vw;
+    height: 50vh;
+    background: rgb(30, 30, 30);
+    top: 25vh;
+    left: 25vw;
+    z-index: 3;
+}
+
+.input-add-new-customer{
+    width: 40vw;
+    height: 5vh;
+    margin-left: 9%;
+    margin-top: 5%;
+}
+.cancel-add-new-customer{
+    float: right;
+    padding-left: 3px;
+    padding-right: 3px;
+    background: aliceblue;
+}
+.save-new-modal-button{
+    width: 25vw;
+    height: 5%;
+    margin-top: 6%;
+    margin-left: 24%;
+    color: aliceblue;
+    font-size: 100%;
+    padding: .5em;
+    background: slategrey;
+    text-align: center;
+}
+.save-new-modal-button:hover{
+    background: dimgray;
+    cursor: pointer;
+}
+.cancel-add-new-customer:hover{
+    background: brown;
+    cursor: pointer;
+}
+
+/*стили CustomerPlate*/
+.Customers-plate{
+
+}
+.cus-grid{
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2vw;
+    padding: .5em;
+}
+.cus-element{
+    padding: .5em;
+    background: slategrey;
+    text-align: center;
+}
+.addnew{
+    font-size: 9vw;
+    padding: .5em;
+    background: slategrey;
+    text-align: center;
+}
+.cus-name-delete{
+    float: right;
+    padding-left: 3px;
+    padding-right: 3px;
+    background: aliceblue;
+    color: black;
+}
+.cus-name-delete:hover{
+    background: brown;
+    cursor: pointer;
+}
+
+.addnew:hover{
+    background: rgb(88, 88, 88);
+    cursor: pointer;
+}
+
+/*стили AccountsPlate*/
+.Accounts-plate{
+
+}

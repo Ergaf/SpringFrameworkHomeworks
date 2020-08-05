@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class CustomerController {
     @Autowired
@@ -25,6 +26,7 @@ public class CustomerController {
 
     @PostMapping("customer")
     Customer saveCustomer(@RequestBody Customer customer){
+        System.out.println(customer);
         return customerService.saveCustomer(customer);
     }
 

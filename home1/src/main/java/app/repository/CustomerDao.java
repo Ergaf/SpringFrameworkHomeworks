@@ -23,7 +23,7 @@ public class CustomerDao implements Dao{
 
     @Override
     public boolean delete(Object obj) {
-        return customer.remove(obj);
+        return customer.remove((Customer) obj);
     }
 
     @Override

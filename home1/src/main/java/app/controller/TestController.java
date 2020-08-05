@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
 public class TestController {
 
     @GetMapping("/111")
