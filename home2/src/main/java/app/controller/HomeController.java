@@ -13,9 +13,13 @@ import java.nio.file.Paths;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String getTest() {
+    @ResponseBody
+    public String getTest() throws IOException, URISyntaxException {
         System.out.println("запрос основной страницы с сервера");
-        return "index";
+        Path path = Paths.get(getClass().getResource("/templates/index.html").toURI());
+        byte[] data = Files.readAllBytes(path);
+
+        return new String(data);
     }
 
     @GetMapping("/js/index.js")
