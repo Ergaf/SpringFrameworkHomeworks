@@ -1,12 +1,20 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Account {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String number;
     private Currency currency;
     private Double balance;
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JsonBackReference
     private Customer customer;
 
     public long getId() {
@@ -64,5 +72,16 @@ public class Account {
     @Override
     public int hashCode() {
         return Objects.hash(id, number, currency, balance, customer);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", currency=" + currency +
+                ", balance=" + balance +
+                ", customer=" + customer +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
 package app.service;
 
 import app.entities.Customer;
-import app.repository.CustomerDao;
+import app.repository.CustomerDaoInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class CustomerService {
 
     @Autowired
 //    private CustomerDao customerDao;
-    private CustomerDao customerDao;
+    private CustomerDaoInMemory customerDao;
 
     public List<Customer> getAllCustomer(){
         return customerDao.findAll();

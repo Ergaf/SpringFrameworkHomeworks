@@ -1,9 +1,18 @@
 package app.entities;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Employer {
-    Long id;
-    String companyName;
-    String address;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String companyName;
+    private String address;
+    @ManyToMany
+    private List<Customer> customers = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -27,5 +36,13 @@ public class Employer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 }

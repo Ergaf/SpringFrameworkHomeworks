@@ -1,7 +1,7 @@
 package app.service;
 
 import app.entities.Account;
-import app.repository.AccountDao;
+import app.repository.AccountDaoInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class AccountService {
 
     @Autowired
-    private AccountDao accountDao;
+    private AccountDaoInMemory accountDao;
 
     public List<Account> getAllAccounts(){
         return accountDao.findAll();

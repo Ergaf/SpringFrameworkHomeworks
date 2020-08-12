@@ -1,15 +1,25 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private Integer age;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Account> accounts = new ArrayList<>();
+    @ManyToMany
+    private List<Employer> employers = new ArrayList<>();
 
     //methods
     public long getId() {
@@ -52,6 +62,18 @@ public class Customer {
         this.accounts = accounts;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Employer> getEmployers() {
+        return employers;
+    }
+
+    public void setEmployers(List<Employer> employers) {
+        this.employers = employers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,5 +89,16 @@ public class Customer {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, email, age, accounts);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", accounts=" + accounts +
+                '}';
     }
 }

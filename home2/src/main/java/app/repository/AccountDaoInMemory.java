@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class AccountDao implements Dao{
+public class AccountDaoInMemory implements Dao{
     private final List<Account> accounts = new ArrayList<>();
 
     @Override
