@@ -6,10 +6,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Account extends AbstractEntity{
     private String number;
     private Currency currency;
     private Double balance;
@@ -17,7 +14,7 @@ public class Account {
     @JsonBackReference
     private Customer customer;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

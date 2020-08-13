@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Employer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Employer extends AbstractEntity{
     private String companyName;
     private String address;
     @ManyToMany
@@ -44,5 +41,15 @@ public class Employer {
 
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
+    }
+
+    @Override
+    public String toString() {
+        return "Employer{" +
+                "companyName='" + companyName + '\'' +
+                ", address='" + address + '\'' +
+                ", customers=" + customers +
+                ", id=" + id +
+                '}';
     }
 }

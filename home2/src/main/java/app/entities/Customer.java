@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Customer extends AbstractEntity{
     private String name;
     private String email;
     private Integer age;
@@ -22,7 +19,7 @@ public class Customer {
     private List<Employer> employers = new ArrayList<>();
 
     //methods
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
