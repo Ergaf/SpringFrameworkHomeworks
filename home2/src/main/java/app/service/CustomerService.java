@@ -35,11 +35,7 @@ public class CustomerService {
     }
 
     public boolean deleteCustomer(Long id){
-        customerDao.findAll().forEach(e -> {
-            if(e.getId() == id){
-                customerDao.delete(e);
-            }
-        });
+        customerDao.deleteById(id);
         return true;
     }
 

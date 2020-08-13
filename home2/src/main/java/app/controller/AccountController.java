@@ -3,12 +3,11 @@ package app.controller;
 import app.entities.Account;
 import app.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class AccountController {
     @Autowired
@@ -20,17 +19,17 @@ public class AccountController {
     }
 
     @PostMapping("/accountReplenish")
-    boolean replenishAccountBalance(Long id, Double sum){
+    boolean replenishAccountBalance(@RequestBody Long id, @RequestBody Double sum){
         return accountService.replenishAccountBalance(id, sum);
     }
 
     @PostMapping("/accountTakeOff")
-    boolean takeOffFromAccountBalance(Long id, Double sum){
+    boolean takeOffFromAccountBalance(@RequestBody Long id, @RequestBody Double sum){
         return accountService.takeOffFromAccountBalance(id, sum);
     }
 
     @PostMapping("/accountTransfer")
-    boolean transferMoneyFromAccountToAccount(Long id1, Long id2, Double sum){
+    boolean transferMoneyFromAccountToAccount(@RequestBody Long id1, @RequestBody Long id2, @RequestBody Double sum){
         return accountService.transferMoneyFromAccountToAccount(id1, id2, sum);
     }
 }
