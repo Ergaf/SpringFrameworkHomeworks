@@ -38,7 +38,7 @@ public class AccountDaoHibernate implements Dao{
 
     @Override
     public List<Account> findAll() {
-        return EmGet.em.createNativeQuery("SELECT * FROM account", Account.class).getResultList();
+        return EmGet.em.createNativeQuery("SELECT * FROM ACCOUNT", Account.class).getResultList();
     }
 
     @Override
