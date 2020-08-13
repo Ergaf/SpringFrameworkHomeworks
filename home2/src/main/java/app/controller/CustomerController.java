@@ -26,7 +26,6 @@ public class CustomerController {
 
     @PostMapping("customer")
     Customer saveCustomer(@RequestBody Customer customer){
-        System.out.println(customer);
         return customerService.saveCustomer(customer);
     }
 

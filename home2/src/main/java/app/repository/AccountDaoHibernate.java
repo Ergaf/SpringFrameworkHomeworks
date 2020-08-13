@@ -1,18 +1,29 @@
 package app.repository;
 
 import app.entities.Account;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class AccountDaoHibernate implements Dao{
     @Override
     public Account save(Object obj) {
-        return null;
+        EmGet.transaction.begin();
+        Account account = EmGet.em.merge((Account)obj);
+        EmGet.transaction.commit();
+        return account;
     }
 
     @Override
     public boolean delete(Object obj) {
-        return false;
+        Account acc = (Account)obj;
+        Account account = EmGet.em.find(Account.class, acc.getId());
+
+        EmGet.transaction.begin();
+        EmGet.em.remove(account);
+        EmGet.transaction.commit();
+        return true;
     }
 
     @Override
@@ -26,17 +37,21 @@ public class AccountDaoHibernate implements Dao{
     }
 
     @Override
-    public List findAll() {
-        return null;
+    public List<Account> findAll() {
+        return EmGet.em.createNativeQuery("SELECT * FROM account", Account.class).getResultList();
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        Account account = EmGet.em.find(Account.class, id);
+        EmGet.transaction.begin();
+        EmGet.em.remove(account);
+        EmGet.transaction.commit();
+        return true;
     }
 
     @Override
-    public Object getOne(Long id) {
-        return null;
+    public Account getOne(Long id) {
+        return EmGet.em.find(Account.class, id);
     }
 }

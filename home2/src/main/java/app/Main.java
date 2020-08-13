@@ -1,7 +1,9 @@
 package app;
 
+import app.entities.Account;
 import app.entities.Customer;
 import app.entities.Employer;
+import app.repository.EmGet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -21,6 +23,7 @@ public class Main {
 //        EntityManager em = factory.createEntityManager();
 //        EntityTransaction transaction = em.getTransaction();
 //
+
 //        transaction.begin();
 //        Employer e = new Employer();
 //        e.setAddress("magadan");

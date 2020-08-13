@@ -1,16 +1,29 @@
 package app.repository;
 
+import app.entities.Customer;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public class CustomerDaoHibernate implements Dao{
     @Override
-    public Object save(Object obj) {
-        return null;
+    public Customer save(Object obj) {
+        EmGet.transaction.begin();
+        Customer customer = EmGet.em.merge((Customer)obj);
+        EmGet.transaction.commit();
+        return customer;
     }
 
     @Override
     public boolean delete(Object obj) {
-        return false;
+        Customer acc = (Customer)obj;
+        Customer customer = EmGet.em.find(Customer.class, acc.getId());
+
+        EmGet.transaction.begin();
+        EmGet.em.remove(customer);
+        EmGet.transaction.commit();
+        return true;
     }
 
     @Override
@@ -24,17 +37,21 @@ public class CustomerDaoHibernate implements Dao{
     }
 
     @Override
-    public List findAll() {
-        return null;
+    public List<Customer> findAll() {
+        return EmGet.em.createNativeQuery("SELECT * FROM customer", Customer.class).getResultList();
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        Customer customer = EmGet.em.find(Customer.class, id);
+        EmGet.transaction.begin();
+        EmGet.em.remove(customer);
+        EmGet.transaction.commit();
+        return true;
     }
 
     @Override
-    public Object getOne(Long id) {
-        return null;
+    public Customer getOne(Long id) {
+        return EmGet.em.find(Customer.class, id);
     }
 }
