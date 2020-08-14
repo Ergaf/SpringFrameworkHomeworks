@@ -29,36 +29,61 @@
     </div>
 <!--    модалка конец-->
 
-<!--    модалка изменения Customer-а-->
-    <div class="modal-change-customer nodisplay">
-        <div class="modalName">Change</div>
-        <div class="nodisplay" id="idToChange"></div>
-        <div class="cancel-modal-button" id="cancelChangeCModal">X</div>
-        <input class="input-customer" id="changeCName" type="text" placeholder="name">
-        <input class="input-customer" id="changeCMail" type="text" placeholder="email">
-        <input class="input-customer" id="changeCAge" type="text" placeholder="age">
-        <div class="save-modal-button" id="saveChangeB">SAVE</div>
-    </div>
-<!--    модалка изменения Customer-а конец-->
-
+<!--    home-->
     <div class="choice home">
         <div>HOME</div>
         <div></div>
     </div>
+<!--    hoem end-->
 
+<!--    Customers-->
     <div class="choice Customers-plate nodisplay">
-        <div class="cus-grid">
+        <div class="cus-grid" id="listCustomers">
             <div class="addnew">+</div>
         </div>
     </div>
 
+    <div class="choice thisCustomer nodisplay">
+        <div class="idToChange nodisplay"></div>
+        <div class="nameCus">This Customer:</div>
+
+        <div>
+            <div class="change-this-customer">CHANGE</div>
+            <div class="this-customer-p" id="thisCustomerPName"></div>
+        </div>
+        <div>
+            <div class="change-this-customer">CHANGE</div>
+            <div class="this-customer-p" id="thisCustomerPEmail"></div>
+        </div>
+        <div>
+            <div class="change-this-customer">CHANGE</div>
+            <div class="this-customer-p" id="thisCustomerPAge"></div>
+        </div>
+        <div class="nameCus">Accounts:</div>
+        <div class="this-customer-accounts">
+            <div class="accountUnitThisC">Acc: 1341342534534, USD, balance: 3333333</div>
+            <div class="accountUnitThisC">Acc: 1341342534534, EUR, balance: 3333333</div>
+            <div class="accountUnitThisC">Acc: 1341342534534, UAH, balance: 3333333</div>
+            <div class="accountUnitThisC">Acc: 1341342534534, CHF, balance: 3333333</div>
+            <div class="accountUnitThisC">Acc: 1341342534534, GBP, balance: 3333333</div>
+            <div class="accountUnitThisC">add new account</div>
+        </div>
+        <div class="nameCus">Employers:</div>
+        <div class="this-customer-employers">EMPLOYERS</div>
+    </div>
+<!--    Customers end-->
+
+<!--    Accounts-->
     <div class="choice Accounts-plate nodisplay">
         <div>ACCOUNT</div>
     </div>
+<!--    Accounts end-->
 
+<!--    Employers-->
     <div class="choice Employers-plate nodisplay">
         <div>Employers</div>
     </div>
+<!--    Employers end-->
 
 
     <script src="js/index.js"></script>

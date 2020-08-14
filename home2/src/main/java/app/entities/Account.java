@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class Account extends AbstractEntity{
@@ -13,6 +14,10 @@ public class Account extends AbstractEntity{
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JsonBackReference
     private Customer customer;
+
+    {
+        number = UUID.randomUUID().toString();
+    }
 
     public Long getId() {
         return id;

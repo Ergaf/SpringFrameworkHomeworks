@@ -13,7 +13,21 @@ class Customer {
                                 <p class="cus-elem-info">name: ${name}</p>
                                 <p class="cus-elem-info">email: ${email}</p>
                                 <p class="cus-elem-info">age: ${age}</p>
-                                <div class="accounts">accounts: ${accounts}</div>`
+                                <p class="cus-elem-info">accounts:</p>
+                                <div class="accounts">
+                                    <div class="accountUnit">USD</div>
+                                    <div class="accountUnit">EUR</div>
+                                    <div class="accountUnit">UAH</div>
+                                    <div class="accountUnit">CHF</div>
+                                    <div class="accountUnit">GBP</div>
+                                </div>`
+        this._accounts.forEach(e => {
+            let account = document.createElement("div")
+            account.classList.add("accountUnit")
+            account.innerText = e.currency
+            this._elem.querySelector(".accounts").appendChild(account)
+        })
+
     }
     async onClick(){
         console.log(event.target);
@@ -21,7 +35,7 @@ class Customer {
             await this.delete()
         } else
         if(event.target !== this._elem.querySelector(".cus-name-delete")){
-            await this.showChangeModal()
+            await this.showThisCustomerWindow()
         }
     }
     async delete(){
@@ -31,14 +45,20 @@ class Customer {
             await this._elem.remove()
         }
     }
-    showChangeModal(){
+    showThisCustomerWindow(){
         console.log("показал модалку");
-        document.querySelector("#changeCName").value = this._name
-        document.querySelector("#changeCMail").value = this._email
-        document.querySelector("#changeCAge").value = this._age
+        document.querySelector(".Customers-plate").classList.add("nodisplay")
+        document.querySelector(".thisCustomer").classList.remove("nodisplay")
+        document.querySelector("#thisCustomerPName").innerText = "name: "+this._name
+        document.querySelector("#thisCustomerPEmail").innerText = "email: "+this._email
+        document.querySelector("#thisCustomerPAge").innerText = "age: "+this._age
         document.querySelector("#idToChange").innerText = this._id
-        document.querySelector(".modal-fon").classList.remove("nodisplay")
-        document.querySelector(".modal-change-customer").classList.remove("nodisplay")
+    }
+}
+
+class AccountUnit {
+    constructor() {
+
     }
 }
 //------------------------------------------------------------------------------------------------
@@ -78,11 +98,8 @@ document.querySelector("#saveNewB").addEventListener("click", async function () 
 })
 //-------------------------------------------------------------------------------------------------
 
-//модалка Change Customer -------------------------------------------------------------------------
-document.querySelector("#cancelChangeCModal").addEventListener("click", function () {
-    document.querySelector(".modal-fon").classList.add("nodisplay")
-    document.querySelector(".modal-change-customer").classList.add("nodisplay")
-})
+//Change Customer -------------------------------------------------------------------------
+
 //-------------------------------------------------------------------------------------------------
 
 //перерисовка Customers ---------------------------------------------------------------------------
