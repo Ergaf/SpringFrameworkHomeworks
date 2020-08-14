@@ -21,7 +21,7 @@ class Customer {
             await this.delete()
         } else
         if(event.target !== this._elem.querySelector(".cus-name-delete")){
-            await this.showModal()
+            await this.showChangeModal()
         }
     }
     async delete(){
@@ -31,8 +31,14 @@ class Customer {
             await this._elem.remove()
         }
     }
-    showModal(){
+    showChangeModal(){
         console.log("показал модалку");
+        document.querySelector("#changeCName").value = this._name
+        document.querySelector("#changeCMail").value = this._email
+        document.querySelector("#changeCAge").value = this._age
+        document.querySelector("#idToChange").innerText = this._id
+        document.querySelector(".modal-fon").classList.remove("nodisplay")
+        document.querySelector(".modal-change-customer").classList.remove("nodisplay")
     }
 }
 //------------------------------------------------------------------------------------------------
@@ -42,12 +48,12 @@ document.querySelector(".addnew").addEventListener("click", function () {
     document.querySelector(".modal-fon").classList.remove("nodisplay")
     document.querySelector(".modal-add-new").classList.remove("nodisplay")
 })
-document.querySelector(".cancel-add-new-customer").addEventListener("click", function () {
+document.querySelector("#cancelNewCModal").addEventListener("click", function () {
     document.querySelector(".modal-fon").classList.add("nodisplay")
     document.querySelector(".modal-add-new").classList.add("nodisplay")
 })
 
-document.querySelector(".save-new-modal-button").addEventListener("click", async function () {
+document.querySelector("#saveNewB").addEventListener("click", async function () {
     let name = document.querySelector("#newCName").value
     let email = document.querySelector("#newCMail").value
     let age = parseInt(document.querySelector("#newCAge").value, 10)
@@ -69,6 +75,13 @@ document.querySelector(".save-new-modal-button").addEventListener("click", async
         document.querySelector(".modal-add-new").classList.add("nodisplay")
     }
     console.log(res);
+})
+//-------------------------------------------------------------------------------------------------
+
+//модалка Change Customer -------------------------------------------------------------------------
+document.querySelector("#cancelChangeCModal").addEventListener("click", function () {
+    document.querySelector(".modal-fon").classList.add("nodisplay")
+    document.querySelector(".modal-change-customer").classList.add("nodisplay")
 })
 //-------------------------------------------------------------------------------------------------
 

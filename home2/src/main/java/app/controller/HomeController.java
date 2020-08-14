@@ -26,7 +26,7 @@ public class HomeController {
     @ResponseBody
     public String getJs() throws IOException, URISyntaxException {
         System.out.println("запрос за js на сервак");
-        Path path = Paths.get(getClass().getResource("/templates/js/indexOld.js").toURI());
+        Path path = Paths.get(getClass().getResource("/templates/js/index.js").toURI());
         byte[] data = Files.readAllBytes(path);
 
         return new String(data);

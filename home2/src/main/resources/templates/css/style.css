@@ -47,6 +47,14 @@ body{
     background: black;
     opacity: 50%;
 }
+.modalName{
+    color: aliceblue;
+    text-align: center;
+    width: 1%;
+    margin-left: 40%;
+    margin-top: 1%;
+    display: inline-block;
+}
 /*стили модалки addnew*/
 .modal-add-new{
     position: fixed;
@@ -57,21 +65,20 @@ body{
     left: 25vw;
     z-index: 3;
 }
-
-.input-add-new-customer{
+.input-customer{
     width: 40vw;
     height: 5vh;
     margin-left: 9%;
     margin-top: 5%;
     font-size: 3vh;
 }
-.cancel-add-new-customer{
+.cancel-modal-button{
     float: right;
     padding-left: 3px;
     padding-right: 3px;
     background: aliceblue;
 }
-.save-new-modal-button{
+.save-modal-button{
     width: 25vw;
     height: 5%;
     margin-top: 6%;
@@ -82,13 +89,24 @@ body{
     background: slategrey;
     text-align: center;
 }
-.save-new-modal-button:hover{
+.save-modal-button:hover{
     background: dimgray;
     cursor: pointer;
 }
-.cancel-add-new-customer:hover{
+.cancel-modal-button:hover{
     background: brown;
     cursor: pointer;
+}
+
+/*стили модалки изменения Customer*/
+.modal-change-customer{
+    position: fixed;
+    width: 50vw;
+    height: 50vh;
+    background: rgb(30, 30, 30);
+    top: 25vh;
+    left: 25vw;
+    z-index: 3;
 }
 
 /*стили CustomerPlate*/
