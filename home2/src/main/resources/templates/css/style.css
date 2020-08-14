@@ -107,6 +107,10 @@ body{
     background: slategrey;
     text-align: center;
 }
+.cus-element:hover{
+    background: rgb(88, 88, 88);
+    cursor: pointer;
+}
 .addnew{
     font-size: 9vw;
     padding: .5em;

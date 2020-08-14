@@ -1,2 +1,8 @@
-/home2/.idea/
+/home2/.idea/**/*
 /home2/home2.iml
+/home3/.idea/**/*
+/home3/home2.iml
+/home4/.idea/**/*
+/home4/home2.iml
+/home5/.idea/**/*
+/home5/home2.iml
