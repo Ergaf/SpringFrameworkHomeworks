@@ -100,17 +100,6 @@ body{
     cursor: pointer;
 }
 
-/*стили модалки изменения Customer*/
-.modal-change-customer{
-    position: fixed;
-    width: 50vw;
-    height: 50vh;
-    background: rgb(30, 30, 30);
-    top: 25vh;
-    left: 25vw;
-    z-index: 3;
-}
-
 /*стили CustomerPlate*/
 .Customers-plate{
 
@@ -158,12 +147,16 @@ body{
 .accounts-container{
     margin: 5%;
 }
+.accounts{
+
+}
 .accountUnit{
     width: 6.5vh;
     height: 3.5vh;
     background: cadetblue;
     display: inline-block;
     font-size: 3vh;
+    margin: 2%;
 }
 
 /*стили this Customer*/

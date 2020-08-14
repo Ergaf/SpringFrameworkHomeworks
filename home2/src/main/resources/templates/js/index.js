@@ -15,13 +15,15 @@ class Customer {
                                 <p class="cus-elem-info">age: ${age}</p>
                                 <p class="cus-elem-info">accounts:</p>
                                 <div class="accounts">
-                                    <div class="accountUnit">USD</div>
-                                    <div class="accountUnit">EUR</div>
-                                    <div class="accountUnit">UAH</div>
-                                    <div class="accountUnit">CHF</div>
-                                    <div class="accountUnit">GBP</div>
+                                    
+                                </div>
+                                <p class="cus-elem-info">employers:</p>
+                                <div class="employers">
+                                    <div class="employers">employer</div>
+                                    <div class="employers">employer</div>
                                 </div>`
         this._accounts.forEach(e => {
+            console.log(e);
             let account = document.createElement("div")
             account.classList.add("accountUnit")
             account.innerText = e.currency
@@ -52,7 +54,14 @@ class Customer {
         document.querySelector("#thisCustomerPName").innerText = "name: "+this._name
         document.querySelector("#thisCustomerPEmail").innerText = "email: "+this._email
         document.querySelector("#thisCustomerPAge").innerText = "age: "+this._age
-        document.querySelector("#idToChange").innerText = this._id
+        document.querySelector(".idToChange").innerText = this._id
+        let accounts = document.querySelector(".this-customer-accounts")
+        this._accounts.forEach(e => {
+            let account = document.createElement("div")
+            account.classList.add("accountUnitThisC")
+            account.innerText = `Acc: ${e.number}, ${e.currency}, balance: ${e.balance}`
+            document.querySelector(".this-customer-accounts").appendChild(account)
+        })
     }
 }
 
