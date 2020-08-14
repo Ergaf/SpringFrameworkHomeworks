@@ -40,8 +40,8 @@ public class CustomerController {
     }
 
     @PutMapping("customer/{id}/account")
-    public long addAccountForCurrentCustomer(@PathVariable Long id, @RequestBody Account account){
-        return id;
+    public Account addAccountForCurrentCustomer(@PathVariable Long id, @RequestBody Account account){
+        return customerService.addAccountInCustomer(id, account);
     }
 
     @DeleteMapping("customer/{id}/account")

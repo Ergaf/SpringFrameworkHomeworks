@@ -17,6 +17,7 @@
             <property name="javax.persistence.jdbc.user" value="Y2j8wrDQgU"/>
             <property name="javax.persistence.jdbc.password" value="McPhmiw1kN"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+<!--            <property name="javax.persistence.schema-generation.database.action" value="none"/>-->
         </properties>
 
     </persistence-unit>

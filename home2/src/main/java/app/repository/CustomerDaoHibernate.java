@@ -1,5 +1,6 @@
 package app.repository;
 
+import app.entities.Account;
 import app.entities.Customer;
 import org.springframework.stereotype.Repository;
 
@@ -53,5 +54,15 @@ public class CustomerDaoHibernate implements Dao{
     @Override
     public Customer getOne(Long id) {
         return EmGet.em.find(Customer.class, id);
+    }
+
+    public Account addAccountInCustomer(Long id, Account account){
+        Customer customer = EmGet.em.find(Customer.class, id);
+        customer.getAccounts().add(account);
+        EmGet.transaction.begin();
+        EmGet.em.merge(customer);
+        EmGet.transaction.commit();
+        System.out.println(account);
+        return account;
     }
 }

@@ -1,5 +1,6 @@
 package app.service;
 
+import app.entities.Account;
 import app.entities.Customer;
 import app.repository.CustomerDaoHibernate;
 import app.repository.CustomerDaoInMemory;
@@ -25,12 +26,12 @@ public class CustomerService {
     }
 
     public Customer saveCustomer(Customer customer){
-        customer.setId(UUID.randomUUID().hashCode());
+
         return customerDao.save(customer);
     }
 
     public Customer updateCustomer(Long id, Customer customer){
-        customer.setId(UUID.randomUUID().hashCode());
+
         return customerDao.save(customer);
     }
 
@@ -39,5 +40,8 @@ public class CustomerService {
         return true;
     }
 
+    public Account addAccountInCustomer(Long id, Account account){
+        return customerDao.addAccountInCustomer(id, account);
+    }
 
 }
