@@ -13,8 +13,9 @@ public class Customer extends AbstractEntity{
     private String name;
     private String email;
     private Integer age;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Customer_ID")
+//    @JsonManagedReference
     private List<Account> accounts = new ArrayList<>();
     @ManyToMany
     private List<Employer> employers = new ArrayList<>();
@@ -72,22 +73,22 @@ public class Customer extends AbstractEntity{
         this.employers = employers;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return id == customer.id &&
-                Objects.equals(name, customer.name) &&
-                Objects.equals(email, customer.email) &&
-                Objects.equals(age, customer.age) &&
-                Objects.equals(accounts, customer.accounts);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, email, age, accounts);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Customer customer = (Customer) o;
+//        return id == customer.id &&
+//                Objects.equals(name, customer.name) &&
+//                Objects.equals(email, customer.email) &&
+//                Objects.equals(age, customer.age) &&
+//                Objects.equals(accounts, customer.accounts);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, email, age, accounts);
+//    }
 
     @Override
     public String toString() {

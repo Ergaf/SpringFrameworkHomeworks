@@ -9,10 +9,13 @@ class Customer {
         this._accounts = accounts;
         this._elem = elem;
         this._elem.onclick = this.onClick.bind(this)
+        this.render()
+    }
+    render(){
         this._elem.innerHTML = `<div class="cus-name-delete">X</div>
-                                <p class="cus-elem-info">name: ${name}</p>
-                                <p class="cus-elem-info">email: ${email}</p>
-                                <p class="cus-elem-info">age: ${age}</p>
+                                <p class="cus-elem-info">name: ${this._name}</p>
+                                <p class="cus-elem-info">email: ${this._email}</p>
+                                <p class="cus-elem-info">age: ${this._age}</p>
                                 <p class="cus-elem-info">accounts:</p>
                                 <div class="accounts">
                                     
@@ -29,8 +32,8 @@ class Customer {
             account.innerText = e.currency
             this._elem.querySelector(".accounts").appendChild(account)
         })
-
     }
+
     async onClick(){
         console.log(event.target);
         if(event.target === this._elem.querySelector(".cus-name-delete")){
@@ -55,19 +58,36 @@ class Customer {
         document.querySelector("#thisCustomerPEmail").innerText = "email: "+this._email
         document.querySelector("#thisCustomerPAge").innerText = "age: "+this._age
         document.querySelector(".idToChange").innerText = this._id
-        let accounts = document.querySelector(".this-customer-accounts")
+        document.querySelector(".this-customer-accounts").innerHTML = "<div class=\"accountUnitThisC\">add new account</div>"
+        document.querySelector(".accountUnitThisC").addEventListener("click", function () {
+            document.querySelector(".modal-fon").classList.remove("nodisplay")
+            document.querySelector(".modal-add-new-acc").classList.remove("nodisplay")
+        })
         this._accounts.forEach(e => {
             let account = document.createElement("div")
-            account.classList.add("accountUnitThisC")
-            account.innerText = `Acc: ${e.number}, ${e.currency}, balance: ${e.balance}`
-            document.querySelector(".this-customer-accounts").appendChild(account)
+            new AccountUnit(account, e.id, e.currency, e.number, e.balance)
         })
     }
 }
-
+// -----------------------------------------------------------------------------------------------
 class AccountUnit {
-    constructor() {
+    constructor(elem, id, currency, number, balance) {
+        this._elem = elem;
+        this._id = id;
+        this._currency = currency;
+        this._number = number;
+        this._balance = balance;
+        this._elem.onclick = this.onClick.bind(this)
+        this.render()
+    }
 
+    onClick(){
+        console.log("syka");
+    }
+    render(){
+        this._elem.classList.add("accountUnitThisC")
+        this._elem.innerText = `Acc: ${this._number}, ${this._currency}, balance: ${this._balance}`
+        document.querySelector(".this-customer-accounts").appendChild(this._elem)
     }
 }
 //------------------------------------------------------------------------------------------------
@@ -96,10 +116,7 @@ document.querySelector("#saveNewB").addEventListener("click", async function () 
     if(res){
         let container = document.querySelector(".cus-grid")
         let before = document.querySelector(".addnew")
-        let elem = document.createElement("div")
-        new Customer(res.id, elem, res.name, res.email, res.age, res.accounts)
-        elem.classList.add("cus-element")
-        container.insertBefore(elem, before)
+        renderOneCustomer(res, before, container)
         document.querySelector(".modal-fon").classList.add("nodisplay")
         document.querySelector(".modal-add-new").classList.add("nodisplay")
     }
@@ -107,8 +124,38 @@ document.querySelector("#saveNewB").addEventListener("click", async function () 
 })
 //-------------------------------------------------------------------------------------------------
 
-//Change Customer -------------------------------------------------------------------------
+// модалка Add new Account ------------------------------------------------------------------------
+document.querySelector("#cancelNewAccountModal").addEventListener("click", function () {
+    document.querySelector(".modal-fon").classList.add("nodisplay")
+    document.querySelector(".modal-add-new-acc").classList.add("nodisplay")
+})
+document.querySelector("#saveNewA").addEventListener("click", async function () {
+    let id = document.querySelector(".idToChange").innerText
+    let currency = document.querySelector("#currencySelect").value
+    if(currency !== ""){
+        document.querySelector("#currencySelect").classList.remove("wrong")
+        let data = {
+            "currency": currency,
+        }
+        const res = await createFetch(`http://localhost:9000//customer/${id}/account`, "PUT", data)
+        console.log(res);
+        if(res){
+            let account = document.createElement("div")
+            new AccountUnit(account, res.id, res.currency, res.number, res.balance)
+            document.querySelector(".modal-fon").classList.add("nodisplay")
+            document.querySelector(".modal-add-new-acc").classList.add("nodisplay")
+        }
+    } else {
+        document.querySelector("#currencySelect").classList.add("wrong")
+    }
+})
+//-------------------------------------------------------------------------------------------------
 
+//Change Customer ---------------------------------------------------------------------------------
+document.querySelector(".back-button").addEventListener("click", function () {
+    document.querySelector(".Customers-plate").classList.remove("nodisplay")
+    document.querySelector(".thisCustomer").classList.add("nodisplay")
+})
 //-------------------------------------------------------------------------------------------------
 
 //перерисовка Customers ---------------------------------------------------------------------------
@@ -119,32 +166,41 @@ async function reRenderCustomers() {
     const response = await createFetch("http://localhost:9000/customer", "GET")
     console.log(response);
     response.forEach(e => {
-        let elem = document.createElement("div")
-        new Customer(e.id, elem, e.name, e.email, e.age, e.accounts)
-        elem.classList.add("cus-element")
-        elem.setAttribute("id", e.id)
-        container.insertBefore(elem, before)
+        renderOneCustomer(e, before, container)
     })
+}
+function renderOneCustomer(customer, before, container){
+    let elem = document.createElement("div")
+    new Customer(customer.id, elem, customer.name, customer.email, customer.age, customer.accounts)
+    elem.classList.add("cus-element")
+    container.insertBefore(elem, before)
 }
 //--------------------------------------------------------------------------------------------------
 
 // нопки хедера ------------------------------------------------------------------------------------
 document.querySelectorAll(".header-button").forEach(e => {
     e.addEventListener("click", function(){
-        document.querySelectorAll(".choice").forEach(e => {
-            e.classList.add("nodisplay")
+        document.querySelectorAll(".header-button").forEach(y => {
+            y.classList.remove("set-header-button")
+        })
+        document.querySelectorAll(".choice").forEach(y => {
+            y.classList.add("nodisplay")
         })
         if(event.target === document.querySelector("#home")){
+            document.querySelector("#home").classList.add("set-header-button")
             document.querySelector(".home").classList.remove("nodisplay")
         }
         if(event.target === document.querySelector("#customers-b")){
+            document.querySelector("#customers-b").classList.add("set-header-button")
             document.querySelector(".Customers-plate").classList.remove("nodisplay")
             reRenderCustomers();
         }
         if(event.target === document.querySelector("#account-b")){
+            document.querySelector("#account-b").classList.add("set-header-button")
             document.querySelector(".Accounts-plate").classList.remove("nodisplay")
         }
         if(event.target === document.querySelector("#employers-b")){
+            document.querySelector("#employers-b").classList.add("set-header-button")
             document.querySelector(".Employers-plate").classList.remove("nodisplay")
         }
     })
@@ -153,6 +209,7 @@ document.querySelectorAll(".header-button").forEach(e => {
 
 //функция отправки запросов ------------------------------------------------------------------------
 async function createFetch(adres, method, data){
+    document.querySelector(".loader").classList.remove("nodisplay")
     const response = await fetch(adres, {
         method: method,
         headers: {
@@ -162,6 +219,7 @@ async function createFetch(adres, method, data){
         body: JSON.stringify(data),
     }).catch(e => {console.log('Bad URL: ', e)});
     let res = await response.json();
+    document.querySelector(".loader").classList.add("nodisplay")
     return res;
 }
 //--------------------------------------------------------------------------------------------------

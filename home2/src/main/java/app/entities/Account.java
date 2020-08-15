@@ -12,9 +12,9 @@ public class Account extends AbstractEntity{
     private String number;
     private Currency currency;
     private Double balance = 0.0;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonBackReference
-    private Customer customer;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+////    @JsonBackReference
+//    private Customer customer;
 
     {
         number = UUID.randomUUID().toString();
@@ -52,30 +52,30 @@ public class Account extends AbstractEntity{
         this.balance = balance;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
+//    public Customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return id == account.id &&
-                Double.compare(account.balance, balance) == 0 &&
-                Objects.equals(number, account.number) &&
-                currency == account.currency &&
-                Objects.equals(customer, account.customer);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, number, currency, balance, customer);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Account account = (Account) o;
+//        return id == account.id &&
+//                Double.compare(account.balance, balance) == 0 &&
+//                Objects.equals(number, account.number) &&
+//                currency == account.currency &&
+//                Objects.equals(customer, account.customer);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, number, currency, balance, customer);
+//    }
 
     @Override
     public String toString() {
@@ -84,7 +84,7 @@ public class Account extends AbstractEntity{
                 ", number='" + number + '\'' +
                 ", currency=" + currency +
                 ", balance=" + balance +
-                ", customer=" + customer +
+//                ", customer=" + customer +
                 '}';
     }
 }
