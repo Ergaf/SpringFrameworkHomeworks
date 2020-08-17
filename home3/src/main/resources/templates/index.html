@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиент-Банк</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<!--    фон/блок для модалки-->
+    <div class="modal-fon nodisplay"></div>
+<!--    кнопки хедера-->
+    <div class="header-container">
+        <div class="header-button set-header-button" id="home">Home</div>
+        <div class="header-button" id="customers-b">Customers</div>
+        <div class="header-button" id="account-b">Accounts</div>
+        <div class="header-button" id="employers-b">Employers</div>
+        <div class="header-button">button</div>
+    </div>
+    <div class="loader nodisplay">loading...</div>
+<!--    кнопки хедера конец-->
+
+<!--    модалка addNew Customer-->
+    <div class="modal-add-new nodisplay">
+        <div class="modalName">AddNewCustomer</div>
+        <div class="cancel-modal-button" id="cancelNewCModal">X</div>
+        <input class="input-modal" id="newCName" type="text" placeholder="name">
+        <input class="input-modal" id="newCMail" type="text" placeholder="email">
+        <input class="input-modal" id="newCAge" type="text" placeholder="age">
+        <div class="save-modal-button" id="saveNewB">SAVE</div>
+    </div>
+<!--    модалка конец-->
+
+<!--    home-->
+    <div class="choice home">
+        <div>HOME</div>
+        <div></div>
+    </div>
+<!--    hoem end-->
+
+<!--    Customers-->
+    <div class="choice Customers-plate nodisplay">
+        <div class="cus-grid" id="listCustomers">
+            <div class="addnew">+</div>
+        </div>
+    </div>
+
+    <div class="choice thisCustomer nodisplay">
+        <div class="idToChange nodisplay"></div>
+        <div class="nameCus">This Customer:</div>
+        <div class="back-button">Back</div>
+
+        <div>
+            <div class="change-this-customer">CHANGE</div>
+            <div class="this-customer-p" id="thisCustomerPName"></div>
+        </div>
+        <div>
+            <div class="change-this-customer">CHANGE</div>
+            <div class="this-customer-p" id="thisCustomerPEmail"></div>
+        </div>
+        <div>
+            <div class="change-this-customer">CHANGE</div>
+            <div class="this-customer-p" id="thisCustomerPAge"></div>
+        </div>
+        <div class="nameCus">Accounts:</div>
+        <div class="this-customer-accounts">
+            <div class="accountUnitThisC">add new account</div>
+        </div>
+        <div class="nameCus">Employers:</div>
+        <div class="this-customer-employers">EMPLOYERS</div>
+    </div>
+<!--    Customers end-->
+
+<!--    Accounts-->
+    <div class="choice Accounts-plate nodisplay">
+        <div>ACCOUNT</div>
+    </div>
+
+    <div class="modal-add-new-acc nodisplay">
+        <div class="modalName">AddNewAccount</div>
+        <div class="cancel-modal-button" id="cancelNewAccountModal">X</div>
+
+        <select class="input-modal" id="currencySelect">
+            <option selected value="">select currency</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="UAH">UAH</option>
+            <option value="CHF">CHF</option>
+            <option value="GBP">GBP</option>
+        </select>
+
+        <div class="save-modal-button" id="saveNewA">SAVE</div>
+    </div>
+<!--    Accounts end-->
+
+<!--    Employers-->
+    <div class="choice Employers-plate nodisplay">
+        <div>Employers</div>
+    </div>
+<!--    Employers end-->
+
+
+    <script src="js/index.js"></script>
+</body>
+</html>
