@@ -2,10 +2,13 @@ package app.controller;
 
 import app.entities.Account;
 import app.entities.Customer;
+import app.entities.dto.CustomerReq;
+import app.facade.CustomerMapper;
 import app.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -13,6 +16,8 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     CustomerService customerService;
+    @Autowired
+    CustomerMapper mapper;
 
     @GetMapping("customer")
     List<Customer> getAllCustomer(){
@@ -25,7 +30,8 @@ public class CustomerController {
     }
 
     @PostMapping("customer")
-    Customer saveCustomer(@RequestBody Customer customer){
+    Customer saveCustomer(@Valid @RequestBody Customer customer){
+        System.out.println("пришел Customer "+customer);
         return customerService.saveCustomer(customer);
     }
 
