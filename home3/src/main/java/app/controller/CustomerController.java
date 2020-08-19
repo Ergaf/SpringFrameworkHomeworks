@@ -3,6 +3,7 @@ package app.controller;
 import app.entities.Account;
 import app.entities.Customer;
 import app.entities.dto.CustomerReq;
+import app.entities.dto.CustomerRes;
 import app.facade.customer.CustomerReqMap;
 import app.facade.customer.CustomerResMap;
 import app.service.CustomerService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -25,25 +27,29 @@ public class CustomerController {
     @PostConstruct
     public void init(){
         reqMap = Mappers.getMapper(CustomerReqMap.class);
+        resMap = Mappers.getMapper(CustomerResMap.class);
     }
 
     @GetMapping("customer")
-    List<Customer> getAllCustomer(){
-        System.out.println("пришли за списком всех Customer");
-        return customerService.getAllCustomer();
+    List<CustomerRes> getAllCustomer(){
+        List<CustomerRes> customersRes = new ArrayList<>();
+        for(Customer c: customerService.getAllCustomer()){
+            System.out.println(c);
+            CustomerRes cR = resMap.customerToDtoRes(c);
+            System.out.println(cR);
+            customersRes.add(cR);
+        }
+        return customersRes;
     }
 
     @GetMapping("customer/{id}")
-    Customer getOneCustomer(@PathVariable Long id){
-        System.out.println("пришли за одним Customer");
-        return customerService.getOneCustomer(id);
+    CustomerRes getOneCustomer(@PathVariable Long id){
+        return resMap.customerToDtoRes(customerService.getOneCustomer(id));
     }
 
     @PostMapping("customer")
     Customer saveCustomer(@Valid @RequestBody CustomerReq customerReq){
-        System.out.println("пришел на создание новый Customer "+customerReq);
         Customer customer = reqMap.dtoCResToCustomer(customerReq);
-        System.out.println("после mapStruct "+customer);
         return customerService.saveCustomer(customer);
     }
 

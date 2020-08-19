@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+//@Getter
+//@Setter
+//@ToString
 public class Employer extends AbstractEntity{
     private String companyName;
     private String address;

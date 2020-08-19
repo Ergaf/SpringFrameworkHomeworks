@@ -1,7 +1,6 @@
 package app.facade.account;
 
 import app.entities.Account;
-import app.entities.dto.AccountReq;
 import app.entities.dto.AccountRes;
 
 public interface AccountResMap {

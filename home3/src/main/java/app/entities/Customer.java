@@ -12,19 +12,20 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+//@Getter
+//@Setter
+//@ToString
 public class Customer extends AbstractEntity{
     private String name;
-    @JsonIgnore
     private String password;
-    @Email
     private String email;
     private String phoneNumber;
-    @Min(18)
     private Integer age;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Customer_ID")
@@ -87,5 +88,21 @@ public class Customer extends AbstractEntity{
 
     public void setEmployers(List<Employer> employers) {
         this.employers = employers;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", age=" + age +
+                ", accounts=" + accounts +
+                ", employers=" + employers +
+                ", id=" + id +
+                ", createdDate='" + createdDate + '\'' +
+                ", lastModifiedDate='" + lastModifiedDate + '\'' +
+                '}';
     }
 }

@@ -12,7 +12,9 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Data
+//@Getter
+//@Setter
+//@ToString
 public class Account extends AbstractEntity{
     private String number;
     private Currency currency;
