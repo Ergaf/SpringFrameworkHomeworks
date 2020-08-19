@@ -1,8 +1,6 @@
 package app.service;
 
 import app.entities.Account;
-import app.repository.AccountDaoHibernate;
-import app.repository.AccountDaoInMemory;
 import app.repository.interfaces.AccountRepInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
