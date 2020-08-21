@@ -22,8 +22,8 @@ class Customer {
                                 </div>
                                 <p class="cus-elem-info">employers:</p>
                                 <div class="employers">
-                                    <div class="employers">employer</div>
-                                    <div class="employers">employer</div>
+<!--                                    <div class="employers">employer</div>-->
+<!--                                    <div class="employers">employer</div>-->
                                 </div>`
         this._accounts.forEach(e => {
             let account = document.createElement("div")
@@ -162,11 +162,22 @@ async function reRenderCustomers() {
     let container = document.querySelector(".cus-grid")
     container.querySelectorAll(".cus-element").forEach(e => e.remove())
     let before = document.querySelector(".addnew")
-    const response = await createFetch("http://localhost:9000/customer", "GET")
+    const response = await createFetch("http://localhost:9000/customer/page/0", "GET")
     console.log(response);
-    response.forEach(e => {
+    response.content.forEach(e => {
         renderOneCustomer(e, before, container)
     })
+    console.log(response.totalElements);
+
+    let page = document.querySelector(".page");
+    page.innerHTML = ""
+    for(let i = 0; i < response.totalElements/7; i++){
+        let elem = document.createElement("a");
+        elem.classList.add("page-elem")
+        elem.innerText = i
+        elem.setAttribute("href", `http://localhost:9000/customer/page/${i}`)
+        page.appendChild(elem);
+    }
 }
 function renderOneCustomer(customer, before, container){
     let elem = document.createElement("div")

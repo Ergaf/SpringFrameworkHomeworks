@@ -121,7 +121,7 @@ body{
 .cus-grid{
     display: grid;
 
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2vw;
     padding: .5em;
 }
@@ -241,7 +241,11 @@ body{
 }
 
 
-
+.page-elem{
+    padding: 1vh;
+    margin: 5px;
+    background: #282828;
+}
 
 .wrong{
     border: #ff2323 2px solid;

@@ -9,6 +9,7 @@ import app.facade.customer.CustomerResMap;
 import app.service.CustomerService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -30,16 +31,17 @@ public class CustomerController {
         resMap = Mappers.getMapper(CustomerResMap.class);
     }
 
-    @GetMapping("customer")
-    List<CustomerRes> getAllCustomer(){
-        List<CustomerRes> customersRes = new ArrayList<>();
-        for(Customer c: customerService.getAllCustomer()){
-            System.out.println(c);
-            CustomerRes cR = resMap.customerToDtoRes(c);
-            System.out.println(cR);
-            customersRes.add(cR);
-        }
-        return customersRes;
+    @GetMapping("customer/page/{page}")
+    Page<Customer> getAllCustomer(@PathVariable int page){
+//        System.out.println(page);
+//        Page<CustomerRes> customersRes = new ArrayList<>();
+//        for(Customer c: customerService.getAllCustomer(page)){
+//            System.out.println(c);
+//            CustomerRes cR = resMap.customerToDtoRes(c);
+//            System.out.println(cR);
+//            customersRes.add(cR);
+//        }
+        return customerService.getAllCustomer(page);
     }
 
     @GetMapping("customer/{id}")

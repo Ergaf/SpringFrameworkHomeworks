@@ -4,6 +4,9 @@ import app.entities.Account;
 import app.entities.Customer;
 import app.repository.interfaces.CustomerRepInt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +18,8 @@ public class CustomerService {
     @Autowired
     private CustomerRepInt customerDao;
 
-    public List<Customer> getAllCustomer(){
-        return (List<Customer>) customerDao.findAll();
+    public Page<Customer> getAllCustomer(int page){
+        return customerDao.findAll(PageRequest.of(page, 7));
     }
 
     public Customer getOneCustomer(Long id){
