@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div>
+    <div class="header">Login page</div>
+    <div class="loader nodisplay"></div>
+    <div class="form-container">
+        <input class="login-input" type="text" id="login" placeholder="login">
+        <input class="login-input" type="password" id="pass"  placeholder="password">
+        <button class="button-submit">Login</button>
+    </div>
+</div>
+
+<script>
+    document.querySelector(".button-submit").addEventListener("click", function () {
+        let login = document.querySelector("#login").value
+        let pass = document.querySelector("#pass").value
+        let data = {
+            login: login,
+            pass: pass
+        }
+        let res = createFetch("http://localhost:9000/login", "POST", data)
+
+    })
+
+    async function createFetch(adres, method, data){
+        let loader = document.querySelector(".loader")
+        loader.classList.remove("nodisplay")
+        loader.innerText = "loading..."
+        const response = await fetch(adres, {
+            method: method,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).catch(e => {
+            console.log('Bad URL: ', e)
+            loader.innerText = e
+        });
+        // let res = await response.json();
+        let res = await response.json();
+        console.log(res);
+        document.querySelector(".loader").classList.add("nodisplay")
+        return res;
+    }
+</script>
+</body>
+</html>
